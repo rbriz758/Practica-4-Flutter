@@ -1,0 +1,114 @@
+{
+  "products": [
+    {
+      "id": "inception",
+      "name": "Inception",
+      "image": "assets/images/inception.jpg",
+      "description": "Un ladrón que roba secretos corporativos mediante la tecnología de compartir sueños.",
+      "director": "Christopher Nolan",
+      "year": 2010,
+      "duration": "2h 28m",
+      "genre": "Sci-Fi",
+      "rating": 8.8
+    },
+    {
+      "id": "interstellar",
+      "name": "Interstellar",
+      "image": "assets/images/interstellar.jpg",
+      "description": "Un equipo viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
+      "director": "Christopher Nolan",
+      "year": 2014,
+      "duration": "2h 49m",
+      "genre": "Sci-Fi",
+      "rating": 8.7
+    },
+    {
+      "id": "darkknight",
+      "name": "The Dark Knight",
+      "image": "assets/images/darkknight.jpg",
+      "description": "Batman se enfrenta al Joker en este intenso drama criminal.",
+      "director": "Christopher Nolan",
+      "year": 2008,
+      "duration": "2h 32m",
+      "genre": "Action",
+      "rating": 9.0
+    },
+    {
+      "id": "pulpfiction",
+      "name": "Pulp Fiction",
+      "image": "assets/images/pulpfiction.jpg",
+      "description": "Varias historias de crimen y redención en Los Ángeles.",
+      "director": "Quentin Tarantino",
+      "year": 1994,
+      "duration": "2h 34m",
+      "genre": "Crime",
+      "rating": 8.9
+    },
+    {
+      "id": "nobody",
+      "name": "Nobody",
+      "image": "assets/images/nobody.jpg",
+      "description": "Un hombre de familia se convierte en el objetivo de criminales peligrosos.",
+      "director": "Ilya Naishuller",
+      "year": 2021,
+      "duration": "1h 32m",
+      "genre": "Action",
+      "rating": 7.4
+    },
+    {
+      "id": "the_suicide_squad",
+      "name": "The Suicide Squad",
+      "image": "assets/images/the_suicide_squad.jpg",
+      "description": "Supervillanos enviados en una misión mortal por el gobierno.",
+      "director": "James Gunn",
+      "year": 2021,
+      "duration": "2h 12m",
+      "genre": "Action",
+      "rating": 7.2
+    },
+    {
+      "id": "ad_astra",
+      "name": "Ad Astra",
+      "image": "assets/images/ad_astra.jpg",
+      "description": "Un astronauta emprende una misión a través del sistema solar.",
+      "director": "James Gray",
+      "year": 2019,
+      "duration": "2h 3m",
+      "genre": "Sci-Fi",
+      "rating": 6.5
+    },
+    {
+      "id": "gladiator",
+      "name": "Gladiator",
+      "image": "assets/images/gladiator.jpg",
+      "description": "Un general romano busca venganza tras ser traicionado.",
+      "director": "Ridley Scott",
+      "year": 2000,
+      "duration": "2h 35m",
+      "genre": "Action",
+      "rating": 8.5
+    },
+    {
+      "id": "matrix",
+      "name": "The Matrix",
+      "image": "assets/images/matrix.jpg",
+      "description": "Un hacker descubre la verdadera naturaleza de la realidad y su papel en ella.",
+      "director": "Lana & Lilly Wachowski",
+      "year": 1999,
+      "duration": "2h 16m",
+      "genre": "Sci-Fi",
+      "rating": 8.7
+    },
+    {
+      "id": "fightclub",
+      "name": "Fight Club",
+      "image": "assets/images/fightclub.jpg",
+      "description": "Un oficinista y un vendedor de jabón forman un club clandestino.",
+      "director": "David Fincher",
+      "year": 1999,
+      "duration": "2h 19m",
+      "genre": "Drama",
+      "rating": 8.8
+    }
+  ]
+}
