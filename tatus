@@ -1,0 +1,188 @@
+[1mdiff --git a/lib/main.dart b/lib/main.dart[m
+[1mindex da783d4..51a378e 100644[m
+[1m--- a/lib/main.dart[m
+[1m+++ b/lib/main.dart[m
+[36m@@ -1,17 +1,42 @@[m
+ import 'package:flutter/material.dart';[m
+[32m+[m[32mimport 'package:flutter_localizations/flutter_localizations.dart';[m
+[32m+[m[32mimport 'package:isaacperezmascaro_rodrigobrizramos_p3/l10n/gen/app_localizations.dart';[m
+ import 'views/login_view.dart';[m
+ [m
+ void main() => runApp(const MyApp());[m
+ [m
+[31m-class MyApp extends StatelessWidget {[m
+[32m+[m[32mclass MyApp extends StatefulWidget {[m
+   const MyApp({Key? key}) : super(key: key);[m
+ [m
+[32m+[m[32m  static _MyAppState? of(BuildContext context) => context.findAncestorStateOfType<_MyAppState>();[m
+[32m+[m
+[32m+[m[32m  @override[m
+[32m+[m[32m  State<MyApp> createState() => _MyAppState();[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mclass _MyAppState extends State<MyApp> {[m
+[32m+[m[32m  Locale? _locale;[m
+[32m+[m
+[32m+[m[32m  void setLocale(Locale locale) {[m
+[32m+[m[32m    setState(() {[m
+[32m+[m[32m      _locale = locale;[m
+[32m+[m[32m    });[m
+[32m+[m[32m  }[m
+[32m+[m
+   @override[m
+   Widget build(BuildContext context) {[m
+[31m-    return const MaterialApp([m
+[31m-      title: 'P3 IPC',[m
+[32m+[m[32m    return MaterialApp([m
+[32m+[m[32m      title: 'P4 IPC',[m
+       debugShowCheckedModeBanner: false,[m
+[31m-      home: LoginView(),[m
+[32m+[m[32m      locale: _locale,[m
+[32m+[m[32m      supportedLocales: AppLocalizations.supportedLocales,[m
+[32m+[m[32m      localizationsDelegates: const [[m
+[32m+[m[32m        AppLocalizations.delegate,[m
+[32m+[m[32m        GlobalMaterialLocalizations.delegate,[m
+[32m+[m[32m        GlobalWidgetsLocalizations.delegate,[m
+[32m+[m[32m        GlobalCupertinoLocalizations.delegate,[m
+[32m+[m[32m      ],[m
+[32m+[m[32m      home: const LoginView(),[m
+     );[m
+   }[m
+ }[m
+[1mdiff --git a/lib/views/login_view.dart b/lib/views/login_view.dart[m
+[1mindex e59443f..9f6523b 100644[m
+[1m--- a/lib/views/login_view.dart[m
+[1m+++ b/lib/views/login_view.dart[m
+[36m@@ -1,5 +1,8 @@[m
+ import 'package:flutter/material.dart';[m
+[32m+[m[32mimport 'package:isaacperezmascaro_rodrigobrizramos_p3/l10n/gen/app_localizations.dart';[m
+[32m+[m[32mimport '../main.dart';[m
+ import 'main_view.dart';[m
+[32m+[m[32mimport 'registration_view.dart';[m
+ [m
+ class LoginView extends StatefulWidget {[m
+   const LoginView({Key? key}) : super(key: key);[m
+[36m@@ -9,9 +12,13 @@[m [mclass LoginView extends StatefulWidget {[m
+ }[m
+ [m
+ class _LoginViewState extends State<LoginView> {[m
+[32m+[m[32m  final _loginFormKey = GlobalKey<FormState>();[m
+   final TextEditingController _usernameController = TextEditingController();[m
+   final TextEditingController _passwordController = TextEditingController();[m
+ [m
+[32m+[m[32m  String? _username;[m
+[32m+[m[32m  String? _password;[m
+[32m+[m
+   void _login() {[m
+     // Aquí iría la lógica de autenticación real[m
+     // Por ahora, simplemente navegamos a la vista principal[m
+[36m@@ -21,109 +28,154 @@[m [mclass _LoginViewState extends State<LoginView> {[m
+     );[m
+   }[m
+ [m
+[32m+[m[32m  void _submitLogin() {[m
+[32m+[m[32m    final isValid = _loginFormKey.currentState?.validate() ?? false;[m
+[32m+[m[32m    if (!isValid) return;[m
+[32m+[m[32m    _loginFormKey.currentState!.save();[m
+[32m+[m
+[32m+[m[32m    ScaffoldMessenger.of(context).showSnackBar([m
+[32m+[m[32m      const SnackBar(content: Text('Accediendo...')),[m
+[32m+[m[32m    );[m
+[32m+[m[32m    _login();[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  @override[m
+[32m+[m[32m  void dispose() {[m
+[32m+[m[32m    _usernameController.dispose();[m
+[32m+[m[32m    _passwordController.dispose();[m
+[32m+[m[32m    super.dispose();[m
+[32m+[m[32m  }[m
+[32m+[m
+   @override[m
+   Widget build(BuildContext context) {[m
+[31m-    return Scaffold([m
+[31m-      backgroundColor: Colors.grey[850],[m
+[31m-      appBar: AppBar([m
+[31m-        title: const Text([m
+[31m-          'Inicio de Sesión',[m
+[31m-          style: TextStyle([m
+[31m-            fontFamily: 'RobotoSlab',[m
+[31m-            fontSize: 22,[m
+[31m-            fontWeight: FontWeight.w600,[m
+[31m-            color: Colors.white,[m
+[32m+[m[32m    final l10n = AppLocalizations.of(context);[m
+[32m+[m[32m    return DefaultTabController([m
+[32m+[m[32m      length: 2,[m
+[32m+[m[32m      child: Scaffold([m
+[32m+[m[32m        backgroundColor: Colors.grey[850],[m
+[32m+[m[32m        appBar: AppBar([m
+[32m+[m[32m          title: Text([m
+[32m+[m[32m            l10n?.appTitle ?? 'Inicio de Sesión',[m
+[32m+[m[32m            style: const TextStyle([m
+[32m+[m[32m              fontFamily: 'RobotoSlab',[m
+[32m+[m[32m              fontSize: 22,[m
+[32m+[m[32m              fontWeight: FontWeight.w600,[m
+[32m+[m[32m              color: Colors.white,[m
+[32m+[m[32m            ),[m
+[32m+[m[32m          ),[m
+[32m+[m[32m          backgroundColor: Colors.black,[m
+[32m+[m[32m          centerTitle: true,[m
+[32m+[m[32m          iconTheme: const IconThemeData(color: Colors.white),[m
+[32m+[m[32m          bottom: TabBar([m
+[32m+[m[32m            indicatorColor: Colors.green,[m
+[32m+[m[32m            labelColor: Colors.white,[m
+[32m+[m[32m            unselectedLabelColor: Colors.white70,[m
+[32m+[m[32m            tabs: [[m
+[32m+[m[32m              Tab(text: l10n?.loginTabSignIn ?? 'Iniciar sesión'),[m
+[32m+[m[32m              Tab(text: l10n?.registerTitle ?? 'Crear cuenta'),[m
+[32m+[m[32m            ],[m
+           ),[m
+         ),[m
+[31m-        backgroundColor: Colors.black,[m
+[31m-        centerTitle: true,[m
+[31m-        iconTheme: const IconThemeData(color: Colors.white),[m
+[31m-      ),[m
+[31m-      body: Center([m
+[31m-        child: SingleChildScrollView([m
+[31m-          padding: const EdgeInsets.all(24.0),[m
+[31m-          child: Column([m
+[31m-            mainAxisAlignment: MainAxisAlignment.center,[m
+[31m-            children: [[m
+[31m-              // Logo o Icono[m
+[31m-              const Icon([m
+[31m-                Icons.account_circle,[m
+[31m-                size: 100,[m
+[31m-                color: Colors.white,[m
+[31m-              ),[m
+[31m-              const SizedBox(height: 40),[m
+[31m-              [m
+[31m-              // Campo de Usuario[m
+[31m-              TextField([m
+[31m-                controller: _usernameController,[m
+[31m-                style: const TextStyle(color: Colors.white),[m
+[31m-                decoration: InputDecoration([m
+[31m-                  labelText: 'Usuario',[m
+[31m-                  labelStyle: const TextStyle(color: Colors.white70),[m
+[31m-                  hintText: 'Introduce tu usuario',[m
+[31m-                  hintStyle: const TextStyle(color: Colors.white38),[m
+[31m-                  filled: true,[m
+[31m-                  fillColor: Colors.grey[700],[m
+[31m-                  border: OutlineInputBorder([m
+[31m-                    borderRadius: BorderRadius.circular(12),[m
+[31m-                    borderSide: BorderSide.none,[m
+[31m-                  ),[m
+[31m-                  prefixIcon: const Icon(Icons.person, color: Colors.white70),[m
+[31m-                ),[m
+[31m-              ),[m
+[31m-              const SizedBox(height: 20),[m
+[31m-              [m
+[31m-              // Campo de Contraseña[m
+[31m-              TextField([m
+[31m-                controller: _passwordController,[m
+[31m-                obscureText: true,[m
+[31m-                style: const TextStyle(color: Colors.white),[m
+[31m-                decoration: InputDecoration([m
+[31m-                  labelText: 'Contraseña',[m
+[31m-                  labelStyle: const TextStyle(color: Colors.white70),[m
+[31m-                  hintText: 'Introduce tu contraseña',[m
+[31m-                  hintStyle: const TextStyle(color: Colors.whit
