@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:isaacperezmascaro_rodrigobrizramos_p3/l10n/gen/app_localizations.dart';
 import 'list_view.dart';
+import 'login_view.dart';
 
 class MainView extends StatelessWidget {
   const MainView({Key? key}) : super(key: key);
@@ -9,9 +11,19 @@ class MainView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[850],
       appBar: AppBar(
-        title: const Text(
-          'BRIMAS +',
-          style: TextStyle(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const LoginView()),
+              (route) => false,
+            );
+          },
+        ),
+        title: Text(
+          AppLocalizations.of(context)?.appTitle ?? 'BRIMAS +',
+          style: const TextStyle(
             fontFamily: 'RobotoSlab',
             fontSize: 22,
             fontWeight: FontWeight.w600,
@@ -21,6 +33,7 @@ class MainView extends StatelessWidget {
         backgroundColor: Colors.black,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
+        actions: const [],
       ),
       body: Center(
         child: Column(
@@ -29,9 +42,9 @@ class MainView extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.only(bottom: 30),
-              child: const Text(
-                'Bienvenido espectador',
-                style: TextStyle(
+              child: Text(
+                AppLocalizations.of(context)?.mainWelcome ?? 'Bienvenido espectador',
+                style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -53,9 +66,9 @@ class MainView extends StatelessWidget {
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Text(
-                  'Ver películas',
-                  style: TextStyle(
+                child: Text(
+                  AppLocalizations.of(context)?.mainMoviesButton ?? 'Ver películas',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                   ),
